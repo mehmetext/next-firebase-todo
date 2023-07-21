@@ -26,7 +26,7 @@ const app =
 const db = getFirestore(app);
 
 export async function addDeneme(text: string) {
-  const denemeCol = collection(db, "deneme");
+  const denemeCol = collection(db, "deneme-2");
 
   await addDoc(denemeCol, {
     text,
@@ -35,7 +35,7 @@ export async function addDeneme(text: string) {
 }
 
 export async function getDenemes() {
-  const denemeCol = collection(db, "deneme");
+  const denemeCol = collection(db, "deneme-2");
   const { docs } = await getDocs(
     query(denemeCol, orderBy("createdAt", "desc"))
   );
