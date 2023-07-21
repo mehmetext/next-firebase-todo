@@ -23,7 +23,7 @@ export default function AddDeneme() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="relative flex gap-2">
+    <form onSubmit={handleSubmit} className="sticky flex gap-2 top-2">
       <input
         type="text"
         value={value}
@@ -34,7 +34,7 @@ export default function AddDeneme() {
       />
       <button
         disabled={value.trim() == ""}
-        className="border p-2 rounded text-gray-800 font-semibold disabled:cursor-not-allowed"
+        className="border p-2 rounded bg-white text-gray-800 font-semibold disabled:cursor-not-allowed"
       >
         ADD
       </button>
