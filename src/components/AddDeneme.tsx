@@ -34,7 +34,7 @@ export default function AddDeneme() {
       />
       <button
         disabled={value.trim() == ""}
-        className="border p-2 rounded bg-white text-gray-800 font-semibold disabled:cursor-not-allowed"
+        className="border p-2 rounded bg-white text-gray-800 font-semibold transition duration-300 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400"
       >
         ADD
       </button>
