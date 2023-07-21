@@ -2,6 +2,8 @@ import AddDeneme from "@/components/AddDeneme";
 import Denemes from "@/components/Denemes";
 import { getDenemes } from "@/lib/firebase";
 
+export const revalidate = 0;
+
 export default async function Home() {
   const denemes: IDeneme[] = await getDenemes();
 
