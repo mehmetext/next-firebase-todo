@@ -4,7 +4,7 @@ export default function Denemes({ denemes }: { denemes: IDeneme[] }) {
       {denemes.map((deneme, i) => (
         <div
           key={deneme.id}
-          className={`flex justify-between gap-4 rounded-full pl-3 p-2 text-white ${
+          className={`flex items-start justify-between gap-4 rounded-3xl pl-3 p-2 text-white ${
             i % 2 == 0 ? "bg-blue-500" : "bg-blue-700"
           }`}
         >
