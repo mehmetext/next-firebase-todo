@@ -1,11 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp, getApps, FirebaseOptions } from "firebase/app";
 import {
-  Timestamp,
   addDoc,
   collection,
   getDocs,
   getFirestore,
+  orderBy,
+  query,
   serverTimestamp,
 } from "firebase/firestore";
 
@@ -35,12 +36,15 @@ export async function addDeneme(text: string) {
 
 export async function getDenemes() {
   const denemeCol = collection(db, "deneme");
-  const { docs } = await getDocs(denemeCol);
+  const { docs } = await getDocs(
+    query(denemeCol, orderBy("createdAt", "desc"))
+  );
 
   const denemes: IDeneme[] = [];
 
   docs.forEach((doc) => {
     const data = doc.data();
+    data.id = doc.id;
     data.createdAt = data.createdAt.toDate();
 
     denemes.push(data as IDeneme);
