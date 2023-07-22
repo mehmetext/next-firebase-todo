@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp, getApps, FirebaseOptions } from "firebase/app";
 import {
   addDoc,
@@ -10,6 +9,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig: FirebaseOptions = {
@@ -59,4 +59,10 @@ export async function deleteDeneme(id: string) {
   const denemeCol = collection(db, "deneme-2");
 
   await deleteDoc(doc(denemeCol, id));
+}
+
+export async function updateDeneme(deneme: IDeneme) {
+  const denemeCol = collection(db, "deneme-2");
+
+  await updateDoc(doc(denemeCol, deneme.id), { text: deneme.text });
 }
