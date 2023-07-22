@@ -3,6 +3,8 @@ import { initializeApp, getApps, FirebaseOptions } from "firebase/app";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   getFirestore,
   orderBy,
@@ -51,4 +53,10 @@ export async function getDenemes() {
   });
 
   return denemes;
+}
+
+export async function deleteDeneme(id: string) {
+  const denemeCol = collection(db, "deneme-2");
+
+  await deleteDoc(doc(denemeCol, id));
 }

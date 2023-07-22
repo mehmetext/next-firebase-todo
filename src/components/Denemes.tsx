@@ -1,6 +1,22 @@
+"use client";
+
+import { deleteDeneme } from "@/lib/firebase";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function Denemes({ denemes }: { denemes: IDeneme[] }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  const handleDelete = async (id: string) => {
+    setLoading(true);
+    await deleteDeneme(id);
+    setLoading(false);
+    router.refresh();
+  };
+
   return (
-    <div className="flex flex-col gap-2">
+    <div className="relative flex flex-col gap-2">
       {denemes.map((deneme, i) => (
         <div
           key={deneme.id}
@@ -9,13 +25,32 @@ export default function Denemes({ denemes }: { denemes: IDeneme[] }) {
           }`}
         >
           <p className="font-medium">{deneme.text}</p>
-          <span className="shrink-0 bg-black/20 text-xs py-1 px-2 rounded-full">
-            {deneme.createdAt?.toLocaleTimeString("tr-TR", {
-              timeStyle: "short",
-            })}
-          </span>
+          <div className="flex items-center justify-center gap-1">
+            <span className="shrink-0 bg-black/20 text-xs py-1 px-2 rounded-full">
+              {deneme.createdAt?.toLocaleTimeString("tr-TR", {
+                timeStyle: "short",
+              })}
+            </span>
+            <div
+              onClick={() => {
+                handleDelete(deneme.id);
+              }}
+              className="h-6 w-6 flex items-center justify-center bg-black/20 rounded-full cursor-pointer select-none"
+            >
+              x
+            </div>
+          </div>
         </div>
       ))}
+      <div
+        className={`absolute -top-1 -left-1 -right-1 -bottom-1 flex p-3 justify-center bg-black/50 rounded text-white transition ${
+          loading
+            ? "scale-100 opacity-100 cursor-wait"
+            : "scale-0 opacity-0 pointer-events-none"
+        }`}
+      >
+        loading...
+      </div>
     </div>
   );
 }
