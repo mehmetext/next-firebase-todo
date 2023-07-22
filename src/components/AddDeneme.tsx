@@ -38,11 +38,15 @@ export default function AddDeneme() {
       >
         ADD
       </button>
-      {loading && (
-        <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black/50 rounded text-white">
-          adding...
-        </div>
-      )}
+      <div
+        className={`absolute -top-1 -left-1 -right-1 -bottom-1 flex items-center justify-center bg-black/50 rounded text-white transition ${
+          loading
+            ? "scale-100 opacity-100 cursor-wait"
+            : "scale-0 opacity-0 pointer-events-none"
+        }`}
+      >
+        adding...
+      </div>
     </form>
   );
 }
