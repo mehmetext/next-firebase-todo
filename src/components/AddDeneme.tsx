@@ -29,7 +29,7 @@ export default function AddDeneme() {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Type something..."
-        className="flex-1 outline-none border p-2 rounded disabled:bg-gray-100"
+        className="flex-1 outline-none border p-2 rounded disabled:bg-gray-100 focus:border-blue-500 transition"
         disabled={loading}
       />
       <button
