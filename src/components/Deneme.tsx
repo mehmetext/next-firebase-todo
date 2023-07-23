@@ -3,6 +3,7 @@
 import { deleteDeneme } from "@/lib/firebase";
 import { useAppStore } from "@/lib/stores/app";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Deneme({
   deneme,
@@ -11,10 +12,13 @@ export default function Deneme({
   deneme: IDeneme;
   isOdd: boolean;
 }) {
+  const [deleting, setDeleting] = useState(false);
+
   const router = useRouter();
   const updateEditingDeneme = useAppStore((store) => store.updateEditingDeneme);
 
   const handleDelete = async (id: string) => {
+    setDeleting(true);
     await deleteDeneme(id);
     router.refresh();
   };
@@ -22,7 +26,7 @@ export default function Deneme({
   return (
     <div
       key={deneme.id}
-      className={`flex items-start justify-between gap-4 rounded-3xl pl-3 p-2 text-white ${
+      className={`relative flex items-start justify-between gap-4 rounded-3xl pl-3 p-2 text-white ${
         isOdd ? "bg-blue-500" : "bg-blue-700"
       }`}
     >
@@ -47,6 +51,15 @@ export default function Deneme({
         >
           x
         </div>
+      </div>
+      <div
+        className={`absolute -top-1 -left-1 -right-1 -bottom-1 flex items-center justify-center bg-black/50 rounded text-white transition ${
+          deleting
+            ? "scale-100 opacity-100 cursor-wait"
+            : "scale-0 opacity-0 pointer-events-none"
+        }`}
+      >
+        deleting...
       </div>
     </div>
   );

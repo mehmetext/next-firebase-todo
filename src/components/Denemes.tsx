@@ -4,7 +4,7 @@ export default function Denemes({ denemes }: { denemes: IDeneme[] }) {
   return (
     <div className="relative flex flex-col gap-2">
       {denemes.map((deneme, i) => (
-        <Deneme deneme={deneme} isOdd={i % 2 == 0} />
+        <Deneme key={deneme.id} deneme={deneme} isOdd={i % 2 == 0} />
       ))}
       {/*  <div
         className={`absolute -top-1 -left-1 -right-1 -bottom-1 flex p-3 justify-center bg-black/50 rounded text-white transition ${
