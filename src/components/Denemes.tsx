@@ -1,3 +1,4 @@
+//Components
 import Deneme from "./Deneme";
 
 export default function Denemes({ denemes }: { denemes: IDeneme[] }) {

@@ -1,6 +1,11 @@
+//Components
 import AddDeneme from "@/components/AddDeneme";
 import Denemes from "@/components/Denemes";
+
+//Firebase
 import { getDenemes } from "@/lib/firebase";
+
+//Next
 import { Metadata } from "next";
 
 export const revalidate = 0;

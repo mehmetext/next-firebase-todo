@@ -1,8 +1,15 @@
 "use client";
 
+//Firebase
 import { deleteDeneme } from "@/lib/firebase";
+
+//Zustand
 import { useAppStore } from "@/lib/stores/app";
+
+//Next
 import { useRouter } from "next/navigation";
+
+//React
 import { useState } from "react";
 
 export default function Deneme({
