@@ -18,6 +18,7 @@ export default function Deneme({
   const updateEditingDeneme = useAppStore((store) => store.updateEditingDeneme);
 
   const handleDelete = async (id: string) => {
+    updateEditingDeneme(null);
     setDeleting(true);
     await deleteDeneme(id);
     router.refresh();
