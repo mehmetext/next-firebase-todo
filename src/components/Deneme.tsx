@@ -1,6 +1,7 @@
 "use client";
 
-import { deleteDeneme, updateDeneme } from "@/lib/firebase";
+import { deleteDeneme } from "@/lib/firebase";
+import { useAppStore } from "@/lib/stores/app";
 import { useRouter } from "next/navigation";
 
 export default function Deneme({
@@ -11,19 +12,11 @@ export default function Deneme({
   isOdd: boolean;
 }) {
   const router = useRouter();
+  const updateEditingDeneme = useAppStore((store) => store.updateEditingDeneme);
 
   const handleDelete = async (id: string) => {
     await deleteDeneme(id);
     router.refresh();
-  };
-
-  const handleEdit = async (deneme: IDeneme) => {
-    const val = prompt("Update Deneme:", deneme.text);
-
-    if (val && val.trim() != "") {
-      await updateDeneme({ ...deneme, text: val });
-      router.refresh();
-    }
   };
 
   return (
@@ -41,9 +34,7 @@ export default function Deneme({
           })}
         </span>
         <div
-          onClick={() => {
-            handleEdit(deneme);
-          }}
+          onClick={() => updateEditingDeneme(deneme)}
           className="h-6 w-6 flex items-center justify-center bg-black/20 rounded-full cursor-pointer select-none"
         >
           E
