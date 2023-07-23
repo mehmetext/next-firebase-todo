@@ -34,13 +34,13 @@ export default function AddDeneme() {
     if ((val = val.trim())) {
       setLoading(true);
       if (editingDeneme) {
-        updateEditingDeneme(null);
         await updateDeneme({ ...editingDeneme, text: val });
       } else {
         await addDeneme(value);
       }
       setValue("");
       setLoading(false);
+      if (editingDeneme) updateEditingDeneme(null);
       router.refresh();
     }
   };
